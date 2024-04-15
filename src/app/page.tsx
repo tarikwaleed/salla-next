@@ -1,8 +1,11 @@
 import { LandingPage } from "@/components/landing-page";
-import Image from "next/image";
+import { UserButton } from "@clerk/nextjs";
 
 export default function Home() {
   return (
-    <LandingPage></LandingPage>
+    <>
+      <UserButton />
+      <LandingPage></LandingPage>
+    </>
   );
 }

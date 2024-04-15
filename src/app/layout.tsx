@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
-
 import { Alexandria as FontSans } from "next/font/google"
-
 import { cn } from "@/lib/utils"
+import ConvexClientProvider from "./ConvexClientProvider";
+import { ClerkProvider } from '@clerk/nextjs'
 
 const fontSans = FontSans({
   subsets: ["arabic"],
@@ -25,7 +24,13 @@ export default function RootLayout({
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased",
         fontSans.className
-      )}>{children}</body>
+      )}>
+        <ClerkProvider >
+          <ConvexClientProvider>
+            {children}
+          </ConvexClientProvider>
+        </ClerkProvider>
+      </body>
     </html>
   );
 }

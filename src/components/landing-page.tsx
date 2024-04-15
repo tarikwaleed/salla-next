@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { CardTitle, CardHeader, CardContent, Card, CardFooter } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import Link from "next/link"
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 
 
 export function LandingPage() {
@@ -49,15 +50,28 @@ export function LandingPage() {
                 على كل طلب
               </div>
             </div>
-            <div className="flex flex-row justify-center gap-4">
-              <Button className="bg-blue-500 text-white rounded-md px-6 py-2 hover:bg-gray-700 transition-colors duration-200">
-                اشــــــــتراك
-              </Button>
-              <Button className="bg-gray-900 text-white rounded-md px-6 py-2 hover:bg-gray-700 transition-colors duration-200">
-                تسجيل الدخول
-              </Button>
+            <SignedOut >
+              <div className="flex flex-row justify-center gap-4">
+                <SignUpButton mode="modal" afterSignUpUrl="/">
+                  <Button className="bg-blue-500 text-white rounded-md px-6 py-2 hover:bg-gray-700 transition-colors duration-200">
+                    اشــــــــتراك
+                  </Button>
+                </SignUpButton>
+                <SignInButton mode="modal" afterSignInUrl="/">
+                  <Button className="bg-gray-900 text-white rounded-md px-6 py-2 hover:bg-gray-700 transition-colors duration-200">
+                    تسجيل الدخول
+                  </Button>
+                </SignInButton>
+              </div>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/user-dashboard">
+                <Button className="bg-blue-500 text-white rounded-md px-6 py-2 hover:bg-gray-700 transition-colors duration-200">
+                  لوحة التحكم
+                </Button>
+              </Link>
+            </SignedIn>
 
-            </div>
 
           </div>
         </div>
@@ -184,7 +198,7 @@ export function LandingPage() {
 
   )
 }
-function FacebookIcon(props:any) {
+function FacebookIcon(props: any) {
   return (
     <svg
       {...props}
@@ -204,7 +218,7 @@ function FacebookIcon(props:any) {
 }
 
 
-function InstagramIcon(props:any) {
+function InstagramIcon(props: any) {
   return (
     <svg
       {...props}
@@ -226,7 +240,7 @@ function InstagramIcon(props:any) {
 }
 
 
-function LinkedinIcon(props:any) {
+function LinkedinIcon(props: any) {
   return (
     <svg
       {...props}
@@ -248,7 +262,7 @@ function LinkedinIcon(props:any) {
 }
 
 
-function TwitterIcon(props:any) {
+function TwitterIcon(props: any) {
   return (
     <svg
       {...props}
