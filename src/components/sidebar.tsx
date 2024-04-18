@@ -1,26 +1,30 @@
-import { HomeIcon } from "@heroicons/react/16/solid";
-import { TicketIcon } from "lucide-react";
+import { ShoppingBag, StoreIcon } from "lucide-react";
 import Link from "next/link";
-import { YELLO_COLOR, DARK_COLOR } from "@/styles/colors";
 
 export default function SideBar() {
     return (
-        <nav className={`${DARK_COLOR} text-white p-6`}>
-            <div className="flex  flex-row items-center">
-                <Link href="/">
-                    <img src="/logo-ar-nobg.png" className="object-contain h-20 w-auto" alt="" />
-                </Link>
-            </div>
-            <div className="pt-20">
-
+        <div className="flex flex-col  bg-white dark:bg-gray-800">
+            <Link href='/'>
+                <div className="flex items-center justify-center h-14 shadow-md">
+                    <span className="text-2xl font-semibold text-gray-800 dark:text-white">Logo</span>
+                </div>
+            </Link>
+            <nav className="flex-grow mt-5 px-4 space-y-2 overflow-auto shadow-md">
                 <Link
-                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-white text-2xl transition-all hover:bg-gray-800"
-                    href="/user-dashboard/coupons"
+                    className="flex items-center px-2 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md"
+                    href="/user-dashboard/products"
                 >
-                    <TicketIcon className="w-5 h-5" />
-                    Coupons
+                    <StoreIcon className="w-6 h-6" />
+                    <span className="ml-2 text-sm">المنتجات</span>
                 </Link>
-            </div>
-        </nav>
+                <Link
+                    className="flex items-center px-2 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md"
+                    href="#"
+                >
+                    <ShoppingBag className="w-6 h-6" />
+                    <span className="ml-2 text-sm">الطلبات</span>
+                </Link>
+            </nav>
+        </div>
     );
 }

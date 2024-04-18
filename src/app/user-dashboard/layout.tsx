@@ -4,7 +4,7 @@ import TopBar from '@/components/topbar';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="grid min-h-screen w-full lg:grid-cols-[400px_1fr]">
+        <div className="grid min-h-screen w-full lg:grid-cols-[300px_1fr]">
             <SideBar />
             <div>
                 <TopBar />

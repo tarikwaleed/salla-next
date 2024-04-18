@@ -8,48 +8,25 @@ import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@cl
 export function LandingPage() {
   return (
     <>
-      <section className="bg-yellow-300 py-12 w-full">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center justify-center">
-            <div className="mb-8">
-              <img
-                alt="Noon Affiliate Program Logo"
-                className="rounded-lg mt-16"
-                height={163}
-                src="/noon-logo.png"
-                style={{
-                  aspectRatio: "363/163",
-                  objectFit: "cover",
-                }}
-                width={363}
-              />
-            </div>
-            <div className="text-center mb-8">
-              <h2
-                className="text-3xl font-bold mb-2"
-              >
-                برنامج التسويق بالعمولة نون
-              </h2>
+      <section className="relative w-full h-screen bg-black">
+        <img
+          alt="Background"
+          className="absolute inset-0 object-cover w-full h-full  opacity-50"
+          height={1080}
+          src="/sheeps.jpg"
+          style={{
+            aspectRatio: "1920/1080",
+            objectFit: "cover",
+          }}
+          width={1920}
+        />
+        <div className="relative h-full flex flex-col justify-center items-center gap-8 px-4 text-center">
+          <h1 className="text-5xl font-bold text-white">اهلا بك في متجرنا</h1>
+          <p className="text-xl text-white max-w-xl mx-auto">
+            تعامل معنا وحقق مزيدا من الارباح
+          </p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:gap-8">
 
-              <h2
-                className="text-3xl font-bold mb-8"
-              >
-                Noon Affiliate Marketing Program
-                <br></br>
-                <span className="text-base">السعودية 🇸🇦 الإمارات 🇦🇪</span>
-              </h2>
-
-              <div className="text-8xl font-bold text-gray-700 mb-4">
-                عمولات تصل حتى
-              </div>
-              <div className="flex flex-row gap-8 justify-center">
-                <div className="text-8xl font-bold text-gray-700 mb-4">ريال/درهم</div>
-                <div className="text-8xl font-bold text-gray-700 mb-4">40</div>
-              </div>
-              <div className="text-8xl font-bold text-gray-700 mb-4">
-                على كل طلب
-              </div>
-            </div>
             <SignedOut >
               <div className="flex flex-row justify-center gap-4">
                 <SignUpButton mode="modal" afterSignUpUrl="/">
@@ -71,76 +48,10 @@ export function LandingPage() {
                 </Button>
               </Link>
             </SignedIn>
-
-
           </div>
         </div>
       </section>
-
-
-      <section className="w-full pt-40">
-        <div className="p-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <p className="text-gray-600 text-2xl mt-4">تفاصيل البرنامج</p>
-              <h1 className="text-4xl font-bold text-gray-800">عموله لك وخصومات للمشتري</h1>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-white shadow-lg rounded-lg p-6">
-                <CardHeader className="flex flex-row-reverse  items-center">
-                  <span className="text-xl font-semibold text-gray-900">المشتري سيحصل على خصم</span>
-                  <span className="text-xl font-semibold text-gray-900 mr-1">10</span>
-                  <span className="text-xl font-semibold text-gray-900">%</span>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    أنت إحتي الأرباح، من يستخدم الكود سيحصل على 10% على إيميلك في قيمة مشترياته إذا كان مستخدم جديد، أو 5%
-                    على إيميلك إذا كان مستخدم سابق.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white shadow-lg rounded-lg p-6">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-gray-900">كود خصم مميز خاص بك</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">سنقوم بإنشاء كود خصم مميز خاص بك، عندما يستخدمه المشترون أثناء مرحلة الدفع في نون ستحصل أنت على عمولة بنسبة1% من إجمالي قيمة الطلب. </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white shadow-lg rounded-lg p-6">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-gray-900">عروض مبيعات 1% مقابل كل طلب</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">برنامج زون التسويقي بالموقع يسمحكي من الربح مقابل كل طلب من طلبك.</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section className="w-full pt-40">
-        <div className="bg-white p-4 sm:p-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center text-xl ">
-              <h1> العمولات وشروطها</h1>
-            </div>
-            <div className="text-center font-bold text-7xl pb-10 ">
-              <h1>جدول عمولات المسوقين</h1>
-            </div>
-            <div className="flex justify-center">
-              <img src="/table.png" alt="table" />
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <footer className="pt-40">
+      <footer className="">
         <div className="bg-gray-900 text-white py-8 px-4 md:px-6">
           <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
