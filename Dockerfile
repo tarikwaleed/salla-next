@@ -14,6 +14,6 @@ RUN npm ci --only=production
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/public ./public
 
-EXPOSE 3000
+EXPOSE 3001
 USER node
 CMD ["npm", "start"]

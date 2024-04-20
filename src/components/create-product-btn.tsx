@@ -10,8 +10,7 @@ const CreateProductButton = (props: Props) => {
     const create = useMutation(api.products.createOne);
     return (
         <Button
-            size="icon"
-            className='text-4xl font-bold  shadow-lg rounded-3xl'
+            className='text-xl   shadow-lg rounded-3xl'
             onClick={() => {
                 create({
                     productName: "خروف",
@@ -20,6 +19,7 @@ const CreateProductButton = (props: Props) => {
             }}
         >
             <PlusIcon></PlusIcon>
+            اضافة منتج
         </Button>
     );
 };
