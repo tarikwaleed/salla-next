@@ -25,8 +25,8 @@ export default function RootLayout({
         "min-h-screen bg-background font-sans antialiased",
         fontSans.className
       )}>
-        <ClerkProvider >
-          <ConvexClientProvider>
+        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY} >
+          <ConvexClientProvider >
             {children}
           </ConvexClientProvider>
         </ClerkProvider>
