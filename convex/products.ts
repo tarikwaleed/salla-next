@@ -14,6 +14,7 @@ export const getOneById = query({
     id: v.id("products"),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity()
     const coupon = await ctx.db.get(args.id);
     return coupon
   },
