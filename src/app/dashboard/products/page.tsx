@@ -1,6 +1,6 @@
-import ProductsList from '@/components/products-list'
+import ProductsList from '@/components/product/products-list'
 import React from 'react'
-import CreateProductButton from '@/components/create-product-btn'
+import { Button } from '@/components/ui/button'
 
 type Props = {}
 
@@ -9,7 +9,7 @@ const page = (props: Props) => {
         <div className='pt-20'>
             <div className='flex flex-row justify-center'>
                 <div></div>
-                <CreateProductButton></CreateProductButton>
+                <Button>اضافة منتج</Button>
             </div>
             <div className='pt-20'>
                 <ProductsList></ProductsList>

@@ -12,7 +12,7 @@ export default function SideBar() {
             <nav className="flex-grow mt-5 px-4 space-y-2 overflow-auto shadow-md">
                 <Link
                     className="flex items-center px-2 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md"
-                    href="/user-dashboard/products"
+                    href="/dashboard/products"
                 >
                     <StoreIcon className="w-6 h-6" />
                     <span className="ml-2 text-sm">المنتجات</span>

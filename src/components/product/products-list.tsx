@@ -1,7 +1,7 @@
 "use client"
 import { useQuery } from 'convex/react';
 import ProductCard from './product-card';
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 
 const ProductsList = () => {
     const products = useQuery(api.products.getAll);

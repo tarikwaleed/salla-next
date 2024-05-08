@@ -42,7 +42,7 @@ export function LandingPage() {
               </div>
             </SignedOut>
             <SignedIn>
-              <Link href="/user-dashboard">
+              <Link href="/dashboard">
                 <Button className="bg-blue-500 text-white rounded-md px-6 py-2 hover:bg-gray-700 transition-colors duration-200">
                   لوحة التحكم
                 </Button>

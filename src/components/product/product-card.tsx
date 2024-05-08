@@ -8,7 +8,7 @@ type ProductProps = {
 }
 const ProductCard = ({ productName, productDescription, id }: ProductProps) => {
     return (
-        <Link href={`/user-dashboard/products/${id}`}>
+        <Link href={`/dashboard/products/${id}`}>
             <Card className="max-w-sm mx-auto">
                 <CardHeader className="aspect-w-3 aspect-h-2">
                     <img
