@@ -5,5 +5,6 @@ export default defineSchema({
   products: defineTable({
     productDescription: v.string(),
     productName: v.string(),
+    userId: v.optional(v.string())
   }),
 });

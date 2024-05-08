@@ -22,11 +22,12 @@ export const getOneById = query({
 
 
 export const createOne = mutation({
-  args: { productName: v.string(), productDescription: v.string() },
+  args: { productName: v.string(), productDescription: v.string(), userId: v.optional(v.string()) },
   handler: async (ctx, args) => {
     const productId = await ctx.db.insert("products", {
       productName: args.productName,
       productDescription: args.productDescription,
+      userId: args.userId
     });
   },
 });
