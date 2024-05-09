@@ -5,7 +5,7 @@ export default function SideBar() {
     return (
         <div className="flex flex-col  bg-white dark:bg-gray-800">
             <Link href='/'>
-                <div className="flex items-center justify-center h-14 shadow-md">
+                <div className="flex items-center justify-center h-20 shadow bg-gray-100 ">
                     <span className="text-2xl font-semibold text-gray-800 dark:text-white">Logo</span>
                 </div>
             </Link>
