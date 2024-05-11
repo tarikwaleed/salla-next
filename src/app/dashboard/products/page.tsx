@@ -1,8 +1,7 @@
-import ProductsList from '@/components/product/products-list'
 import React from 'react'
-import { Button } from '@/components/ui/button'
 import { AddProductModal } from '@/components/product/add-product-modal'
 
+import { ProductTable } from '@/components/product/products-table'
 type Props = {}
 
 const page = (props: Props) => {
@@ -13,7 +12,8 @@ const page = (props: Props) => {
                 <div className='text-6xl font-bold'> المنتجات</div>
             </div>
             <div className='pt-20'>
-                <ProductsList></ProductsList>
+                {/* <ProductsList></ProductsList> */}
+                <ProductTable></ProductTable>
             </div>
         </div>
 
