@@ -3,7 +3,7 @@ import "./globals.css";
 import { Alexandria as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import ConvexClientProvider from "./ConvexClientProvider";
-import { ClerkProvider } from '@clerk/nextjs'
+import { Toaster } from "@/components/ui/toaster"
 
 const fontSans = FontSans({
   subsets: ["arabic"],
@@ -27,6 +27,7 @@ export default function RootLayout({
       )}>
         <ConvexClientProvider >
           {children}
+          <Toaster />
         </ConvexClientProvider>
       </body>
     </html>

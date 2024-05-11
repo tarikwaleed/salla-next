@@ -31,6 +31,7 @@ import { ChangeEvent, useEffect, useState } from "react"
 import { Progress } from "../ui/progress"
 import { useUser } from "@clerk/clerk-react";
 import { ProgressSpinner } from 'primereact/progressspinner';
+import { useToast } from "@/components/ui/use-toast"
 
 const formSchema = z.object({
     age: z.coerce.number(),
@@ -47,7 +48,7 @@ interface ConvexResponseType {
 }
 
 export function AddProductModal() {
-
+    const { toast } = useToast()
     const { isSignedIn, user, isLoaded } = useUser();
     const [fileProgress, setFileProgress] = useState<{ [key: string]: number }>({})
     const generateUploadUrl = useMutation(api.upload.generateUploadUrl);
@@ -75,6 +76,15 @@ export function AddProductModal() {
             storageIds: storageIds
 
         })
+
+        form.reset()
+        setFileProgress({})
+        setIsDialogOpen(false)
+        toast({
+            variant:"green",
+            title: "تم اضافة المنتج بنجاح",
+        })
+
     }
     const handeFileInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files) return
@@ -98,14 +108,19 @@ export function AddProductModal() {
         const storageIdsArray = uploaded.map(file => file.response.storageId);
         setStorageIds(storageIdsArray);
         disableSubmitButton(false)
+
     }
 
 
     return (
         <>
-            <Dialog  >
+            <Dialog open={isDialogOpen} >
+
                 <DialogTrigger asChild >
                     <Button
+                        onClick={() => {
+                            setIsDialogOpen(true)
+                        }}
                     >
                         اضافة منتج
                     </Button>
