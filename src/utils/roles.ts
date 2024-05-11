@@ -10,5 +10,5 @@ export const checkRole = (role: Roles) => {
 export const currentUserId = async () => {
     const user = await currentUser();
 
-    return user?.id
+    return  user?.id
 }
