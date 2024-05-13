@@ -91,7 +91,7 @@ export function AddProductModal() {
         if (!event.target.files) return
         const files = Array.from(event.target.files);
         const url = await generateUploadUrl()
-        const uploaded: UploadFileResponse<ConvexResponseType>[] = await uploadFiles({
+        const uploaded: UploadFileResponse[] = await uploadFiles({
 
             files,
             url,
