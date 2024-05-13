@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button"
-import { CardTitle, CardHeader, CardContent, Card, CardFooter } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 import Link from "next/link"
-import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs"
 
 
 export function LandingPage() {
@@ -29,11 +27,11 @@ export function LandingPage() {
 
             <SignedOut >
               <div className="flex flex-row justify-center gap-4">
-                <SignUpButton mode="modal" afterSignUpUrl="/">
+                {/* <SignUpButton mode="modal" afterSignUpUrl="/">
                   <Button className="bg-blue-500 text-white rounded-md px-6 py-2 hover:bg-gray-700 transition-colors duration-200">
                     اشــــــــتراك
                   </Button>
-                </SignUpButton>
+                </SignUpButton> */}
                 <SignInButton mode="modal" afterSignInUrl="/">
                   <Button className="bg-gray-900 text-white rounded-md px-6 py-2 hover:bg-gray-700 transition-colors duration-200">
                     تسجيل الدخول
