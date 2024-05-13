@@ -14,9 +14,15 @@ export const getOneById = query({
     id: v.id("products"),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity()
-    const coupon = await ctx.db.get(args.id);
-    return coupon
+    const product = await ctx.db.get(args.id);
+    // return product
+    const urls = await Promise.all(product!.storageIds.map(async (storageId) => {
+      return await ctx.storage.getUrl(storageId);
+    }));
+    return {
+      data: product,
+      urls: urls
+    }
   },
 });
 
@@ -27,7 +33,7 @@ export const createOne = mutation({
     type: v.string(),
     weight: v.number(),
     userId: v.optional(v.string()),
-    storageIds: v.array(v.string()),
+    storageIds: v.array(v.id("_storage")),
   },
 
   handler: async (ctx, args) => {

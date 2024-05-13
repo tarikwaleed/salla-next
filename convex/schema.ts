@@ -7,6 +7,6 @@ export default defineSchema({
     type: v.string(),
     weight: v.number(),
     userId: v.optional(v.string()),
-    storageIds: v.array(v.string()),
+    storageIds: v.array(v.id("_storage")),
   }),
 });
