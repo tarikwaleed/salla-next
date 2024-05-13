@@ -10,7 +10,7 @@ const ProductDetails = ({ params }: { params: any }) => {
     return (
         <>
             <div className="container mx-auto mt-8">
-            <h1 className='font-bold text-7xl text-right pt-16 pb-16'>تفاصيل المنتج </h1>
+                <h1 className='font-bold text-7xl text-right pt-16 pb-16'>تفاصيل المنتج </h1>
                 <div className="flex flex-wrap">
                     {/* Product Information Cards */}
                     <div className="w-full sm:w-1/3 px-4 mb-4">
@@ -44,7 +44,7 @@ const ProductDetails = ({ params }: { params: any }) => {
                 <div className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     {product?.urls.map((url, index) => (
                         <Card key={index}>
-                            <img src={url} alt={`Product ${index + 1}`} className="w-full h-auto" />
+                            <img src={url as string} alt={`Product ${index + 1}`} className="w-full h-auto" />
                         </Card>
                     ))}
                 </div>
