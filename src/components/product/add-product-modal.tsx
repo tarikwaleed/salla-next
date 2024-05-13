@@ -32,6 +32,7 @@ import { Progress } from "../ui/progress"
 import { useUser } from "@clerk/clerk-react";
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { useToast } from "@/components/ui/use-toast"
+import { Id } from "../../../convex/_generated/dataModel"
 
 const formSchema = z.object({
     age: z.coerce.number(),
@@ -44,7 +45,7 @@ const formSchema = z.object({
 })
 
 interface ConvexResponseType {
-    storageId: string
+    storageId: Id<"_storage">
 }
 
 export function AddProductModal() {
@@ -52,7 +53,7 @@ export function AddProductModal() {
     const { isSignedIn, user, isLoaded } = useUser();
     const [fileProgress, setFileProgress] = useState<{ [key: string]: number }>({})
     const generateUploadUrl = useMutation(api.upload.generateUploadUrl);
-    const [storageIds, setStorageIds] = useState<string[]>([])
+    const [storageIds, setStorageIds] = useState<Id<"_storage">[]>([])
     const createProduct = useMutation(api.products.createOne)
     const [submitButtonDisabled, disableSubmitButton] = useState(true)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -81,7 +82,7 @@ export function AddProductModal() {
         setFileProgress({})
         setIsDialogOpen(false)
         toast({
-            variant:"green",
+            variant: "green",
             title: "تم اضافة المنتج بنجاح",
         })
 
@@ -114,7 +115,9 @@ export function AddProductModal() {
 
     return (
         <>
-            <Dialog open={isDialogOpen} >
+            <Dialog
+                open={isDialogOpen}
+            >
 
                 <DialogTrigger asChild >
                     <Button
@@ -125,7 +128,12 @@ export function AddProductModal() {
                         اضافة منتج
                     </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] overflow-y-auto max-h-[70vh]">
+                <DialogContent
+                    className="sm:max-w-[425px] overflow-y-auto max-h-[70vh]"
+                    onInteractOutside={() => {
+                        setIsDialogOpen(false)
+                    }}
+                >
                     <DialogHeader className="mb-8">
                         <DialogTitle>اضافة منتج</DialogTitle>
                         <DialogDescription>
@@ -198,17 +206,25 @@ export function AddProductModal() {
                                     <Progress value={fileProgress[fileName]} />
                                 </div>
                             ))}
-
-                            {!form.formState.isSubmitting ?
+                            <div className="flex flex-row justify-between">
+                                {!form.formState.isSubmitting ?
+                                    <Button
+                                        disabled={submitButtonDisabled}
+                                        type="submit"
+                                    >
+                                        اضافة
+                                    </Button>
+                                    :
+                                    <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="4" animationDuration=".5s" />
+                                }
                                 <Button
-                                    disabled={submitButtonDisabled}
-                                    type="submit"
+                                    onClick={() => {
+                                        setIsDialogOpen(false)
+                                    }}
                                 >
-                                    <span>اضافة</span>
+                                    اغلاق
                                 </Button>
-                                :
-                                <ProgressSpinner style={{ width: '30px', height: '30px' }} strokeWidth="4" animationDuration=".5s" />
-                            }
+                            </div>
                         </form>
                     </Form>
                 </DialogContent>
