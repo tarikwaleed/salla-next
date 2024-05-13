@@ -4,9 +4,9 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from ".
 import { api } from "@/../convex/_generated/api";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { AxeIcon, PencilIcon, PlusIcon, TrashIcon } from "lucide-react";
+import { PencilIcon, PlusIcon } from "lucide-react";
 
-export function ProductTable() {
+export function ProductTable({ isAdmin }: { isAdmin: boolean }) {
 
     const products = useQuery(api.products.getAll);
     return (
@@ -27,11 +27,20 @@ export function ProductTable() {
                             <TableCell>{product.type}</TableCell>
                             <TableCell>{product.weight}</TableCell>
                             <TableCell>
-                                <Button variant={"outline"} >
-                                    <PlusIcon></PlusIcon>
-                                </Button>
+                                {isAdmin ?
+                                    <Button
+                                        title="اضافة الى سله"
+                                        variant={"outline"} >
+                                        <PlusIcon></PlusIcon>
+                                    </Button>
+                                    :
+                                    <></>
+                                }
                                 <Link href={`/dashboard/products/${product._id}`}>
-                                    <Button variant={"outline"} >
+                                    <Button
+                                        title="تفاصيل المنتج"
+                                        variant={"outline"}
+                                    >
                                         <PencilIcon></PencilIcon>
                                     </Button>
                                 </Link>
