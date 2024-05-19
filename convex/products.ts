@@ -32,6 +32,8 @@ export const createOne = mutation({
     age: v.number(),
     type: v.string(),
     weight: v.number(),
+    price: v.number(),
+    quantity: v.number(),
     userId: v.optional(v.string()),
     storageIds: v.array(v.id("_storage")),
   },
@@ -41,6 +43,8 @@ export const createOne = mutation({
       age: args.age,
       type: args.type,
       weight: args.weight,
+      price: args.price,
+      quantity: args.quantity,
       userId: args.userId,
       storageIds: args.storageIds
     });

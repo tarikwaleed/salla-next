@@ -4,30 +4,26 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { UploadFileResponse, useUploadFiles } from "@xixixao/uploadstuff/react";
 import { uploadFiles } from "@xixixao/uploadstuff";
 import { useMutation } from "convex/react";
 import { api } from "@/../convex/_generated/api";
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { Progress } from "../ui/progress"
 import { useUser } from "@clerk/clerk-react";
 import { ProgressSpinner } from 'primereact/progressspinner';
@@ -38,19 +34,18 @@ const formSchema = z.object({
     age: z.coerce.number(),
     type: z.string().min(2, { message: "لابد من ادخال النوع" }).max(50),
     weight: z.coerce.number(),
+    price: z.coerce.number(),
+    quantity: z.coerce.number(),
     images: z.custom<FileList>(val => val instanceof FileList, "required")
         .refine(files => files.length > 0, 'لابد من رفع صور')
     // images: typeof window === 'undefined' ? z.any() : z.instanceof(FileList).refine((file) => file?.length == 1, 'File is required.')
 
 })
 
-interface ConvexResponseType {
-    storageId: Id<"_storage">
-}
 
 export function AddProductModal() {
     const { toast } = useToast()
-    const { isSignedIn, user, isLoaded } = useUser();
+    const { user } = useUser();
     const [fileProgress, setFileProgress] = useState<{ [key: string]: number }>({})
     const generateUploadUrl = useMutation(api.upload.generateUploadUrl);
     const [storageIds, setStorageIds] = useState<Id<"_storage">[]>([])
@@ -63,6 +58,8 @@ export function AddProductModal() {
             age: 0,
             type: "cow",
             weight: 0,
+            price: 0,
+            quantity: 0,
             images: undefined
         }
     })
@@ -73,6 +70,8 @@ export function AddProductModal() {
             age: values.age,
             type: values.type,
             weight: values.weight,
+            price: values.price,
+            quantity: values.quantity,
             userId: user?.id,
             storageIds: storageIds
 
@@ -174,6 +173,32 @@ export function AddProductModal() {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>الوزن بعد الذبح(تقريبي)</FormLabel>
+                                        <FormControl>
+                                            <Input type="number"  {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="price"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>السعر</FormLabel>
+                                        <FormControl>
+                                            <Input type="number"  {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="quantity"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>الكميه</FormLabel>
                                         <FormControl>
                                             <Input type="number"  {...field} />
                                         </FormControl>

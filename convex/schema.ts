@@ -6,6 +6,8 @@ export default defineSchema({
     age: v.number(),
     type: v.string(),
     weight: v.number(),
+    price: v.number(),
+    quantity: v.number(),
     userId: v.optional(v.string()),
     storageIds: v.array(v.id("_storage")),
   }),
