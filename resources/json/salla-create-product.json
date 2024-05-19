@@ -1,0 +1,136 @@
+{
+    "name": "T-Shirt Blue",
+    "price": 96.33,
+    "status": "out",
+    "product_type": "product",
+    "quantity": 4,
+    "booking_details": {
+        "location": "Medina",
+        "type": "date",
+        "time_strict_value": 5,
+        "time_strict_type": "days",
+        "sessions_count": 10,
+        "session_gap": 3,
+        "session_duration": 50,
+        "availabilities": [
+            {
+                "day": "sunday",
+                "is_available": true,
+                "times": [
+                    {
+                        "from": "09:30",
+                        "to": "13:00"
+                    },
+                    {
+                        "from": "12:00",
+                        "to": "22:00"
+                    }
+                ]
+            },
+            {
+                "day": "monday",
+                "is_available": true,
+                "times": [
+                    {
+                        "from": "10:00",
+                        "to": "12:00"
+                    }
+                ]
+            }
+        ],
+        "overrides": [
+            {
+                "day": "sunday",
+                "date": "2023-04-09"
+            },
+            {
+                "day": "monday",
+                "date": "2023-04-10"
+            }
+        ]
+    },
+    "description": "textophonious",
+    "categories": [
+        1032561074,
+        256950451
+    ],
+    "min_amount_donating": 1,
+    "max_amount_donating": 5,
+    "sale_price": 43,
+    "cost_price": 35,
+    "sale_end": "2025-08-13",
+    "require_shipping": false,
+    "maximum_quantity_per_order": 0,
+    "weight": 12,
+    "weight_type": "kg",
+    "sku": "23-4324432",
+    "mpn": "45344432343",
+    "gtin": "58636897",
+    "hide_quantity": false,
+    "enable_upload_image": true,
+    "enable_note": true,
+    "pinned": true,
+    "active_advance": true,
+    "subtitle": "Collection 2020",
+    "promotion_title": "New",
+    "metadata_title": "T-Shirt blue - collection 2020",
+    "metadata_description": "T-Shirt blue - collection 2020",
+    "brand_id": 1097509908,
+    "tags": [
+        1366932222,
+        591845887
+    ],
+    "images": [
+        {
+            "original": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/2E0Z2t6Q8FG3ca620rwqcTY2CC2j2PAGrqqeDROY.jpg",
+            "thumbnail": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/2E0Z2t6Q8FG3ca620rwqcTY2CC2j2PAGrqqeDROY.jpg",
+            "alt": "image",
+            "default": true,
+            "sort": 5
+        }
+    ],
+    "options": [
+        {
+            "name": "option2",
+            "display_type": "text",
+            "values": [
+                {
+                    "name": "الأزرق",
+                    "price": 120,
+                    "quantity": 10
+                },
+                {
+                    "name": "الاحمر",
+                    "price": 120,
+                    "quantity": 10
+                },
+                {
+                    "name": "الاصفر",
+                    "price": 120,
+                    "quantity": 10
+                }
+            ]
+        },
+        {
+            "name": "option3",
+            "display_type": "text",
+            "values": [
+                {
+                    "name": "كبير",
+                    "price": 120,
+                    "quantity": 10
+                },
+                {
+                    "name": "صغير",
+                    "price": 120,
+                    "quantity": 10
+                },
+                {
+                    "name": "متوسط",
+                    "price": 120,
+                    "quantity": 10
+                }
+            ]
+        }
+    ]
+}
