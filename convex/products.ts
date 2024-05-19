@@ -9,6 +9,16 @@ export const getAll = query({
   },
 });
 
+export const getUserProducts = query({
+  args: {
+    userId: v.any()
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.query("products").filter((q) => q.eq(q.field("userId"), args.userId))
+      .collect();
+  },
+});
+
 export const getOneById = query({
   args: {
     id: v.id("products"),

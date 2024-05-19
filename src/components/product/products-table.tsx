@@ -6,9 +6,9 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { PencilIcon, PlusIcon } from "lucide-react";
 
-export function ProductTable({ isAdmin }: { isAdmin: boolean }) {
+export function ProductTable({ isAdmin, userId }: { isAdmin: boolean, userId: string | null }) {
 
-    const products = useQuery(api.products.getAll);
+    const products = isAdmin ? useQuery(api.products.getAll) : useQuery(api.products.getUserProducts, { userId: userId })
     return (
         <>
             <Table>

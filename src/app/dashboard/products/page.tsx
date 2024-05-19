@@ -17,7 +17,7 @@ const page = (props: Props) => {
             </div>
             <div className='pt-20'>
                 {/* <ProductsList></ProductsList> */}
-                <ProductTable isAdmin={isAdmin}></ProductTable>
+                <ProductTable isAdmin={isAdmin} userId={userId}></ProductTable>
             </div>
         </div>
 
