@@ -9,8 +9,22 @@ import { useEffect, useState } from "react";
 import { Id } from "../../../convex/_generated/dataModel";
 import { Product } from "@/types/product";
 
+import { useToast } from "@/components/ui/use-toast"
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
 export function ProductTable({ isAdmin, userId }: { isAdmin: boolean, userId: string | null }) {
 
+    const { toast } = useToast()
     const products = isAdmin ? useQuery(api.products.getAll) : useQuery(api.products.getUserProducts, { userId: userId })
     const addProduct = async (raw: any) => {
         var myHeaders = new Headers();
@@ -29,6 +43,12 @@ export function ProductTable({ isAdmin, userId }: { isAdmin: boolean, userId: st
         fetch("https://api.salla.dev/admin/v2/products", requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
+            .then(() => {
+                toast({
+                    variant: "green",
+                    title: "تم اضافة المنتج بنجاح",
+                })
+            })
             .catch(error => console.log('error', error));
     }
     const [currentProductId, setCurrentProductId] = useState<Id<"products">>("j973y6dkzr7yxvyb1f120qypsh6scw8x" as Id<"products">);
@@ -45,6 +65,7 @@ export function ProductTable({ isAdmin, userId }: { isAdmin: boolean, userId: st
         };
     }) : [];
 
+    const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
     const handleAddProduct = (productId: Id<"products">, product: Product) => {
         setCurrentProductId(productId);
         console.log(images)
@@ -89,17 +110,36 @@ export function ProductTable({ isAdmin, userId }: { isAdmin: boolean, userId: st
                             <TableCell>{product.quantity}</TableCell>
                             <TableCell>
                                 {isAdmin ?
-                                    <Button
-                                        title="اضافة الى سله"
-                                        variant={"outline"}
-                                        onClick={() => {
-                                            handleAddProduct(product._id, product)
+                                    // <Button
+                                    //     title="اضافة الى سله"
+                                    //     variant={"outline"}
+                                    //     onClick={() => {
+                                    //         setIsDialogOpen(true)
 
-                                        }}
-                                    >
+                                    //         // handleAddProduct(product._id, product)
 
-                                        <PlusIcon></PlusIcon>
-                                    </Button>
+                                    //     }}
+                                    // >
+
+                                    //     <PlusIcon></PlusIcon>
+                                    // </Button>
+                                    <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                                        <AlertDialogTrigger asChild>
+                                            <Button variant="outline">اضف الى سلة</Button>
+                                        </AlertDialogTrigger>
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>هل انت متأكد من اضافة المنتج الى سله؟</AlertDialogTitle>
+                                                <AlertDialogDescription></AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel>الغاء</AlertDialogCancel>
+                                                <AlertDialogAction onClick={() => {
+                                                    handleAddProduct(product._id, product)
+                                                }}>اضافة</AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
                                     :
                                     <></>
                                 }
@@ -117,6 +157,7 @@ export function ProductTable({ isAdmin, userId }: { isAdmin: boolean, userId: st
                     ))}
                 </TableBody>
             </Table>
+
         </>
     )
 }
