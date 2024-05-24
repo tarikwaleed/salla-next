@@ -5,6 +5,9 @@ import { api } from "@/../convex/_generated/api";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { PencilIcon, PlusIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Id } from "../../../convex/_generated/dataModel";
+import { Product } from "@/types/product";
 
 export function ProductTable({ isAdmin, userId }: { isAdmin: boolean, userId: string | null }) {
 
@@ -28,7 +31,40 @@ export function ProductTable({ isAdmin, userId }: { isAdmin: boolean, userId: st
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
     }
+    const [currentProductId, setCurrentProductId] = useState<Id<"products">>("j973y6dkzr7yxvyb1f120qypsh6scw8x" as Id<"products">);
+    const productDetails = useQuery(api.products.getOneById, { id: currentProductId });
 
+    // Ensure productDetails and urls are defined before mapping
+    const images = productDetails?.urls ? productDetails.urls.map((url, index) => {
+        return {
+            original: `${url}`,
+            thumbnail: `${url}`,
+            alt: "image",
+            default: true,
+            sort: 5
+        };
+    }) : [];
+
+    const handleAddProduct = (productId: Id<"products">, product: Product) => {
+        setCurrentProductId(productId);
+        console.log(images)
+        const raw = JSON.stringify({
+            name: `${product.type} ${product.age}`,
+            price: product.price,
+            product_type: "product",
+            quantity: product.quantity,
+            "images": [
+                {
+                    "original": "https://spca.bc.ca/wp-content/uploads/2020/03/lamb-baby-sheep-outdoors-1.jpg",
+                    "thumbnail": "https://spca.bc.ca/wp-content/uploads/2020/03/lamb-baby-sheep-outdoors-1.jpg",
+                    "alt": "image",
+                    "default": true,
+                    "sort": 5
+                }
+            ],
+        });
+        addProduct(raw);
+    };
 
     return (
         <>
@@ -57,26 +93,7 @@ export function ProductTable({ isAdmin, userId }: { isAdmin: boolean, userId: st
                                         title="اضافة الى سله"
                                         variant={"outline"}
                                         onClick={() => {
-
-                                            const raw = JSON.stringify({
-                                                "name": `${product.type} ${product.age}`,
-                                                "price": product.price,
-                                                "product_type": "product",
-                                                "quantity": product.quantity,
-                                                "images": [
-                                                    {
-                                                        "original": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/2E0Z2t6Q8FG3ca620rwqcTY2CC2j2PAGrqqeDROY.jpg",
-                                                        "thumbnail": "https://salla-dev.s3.eu-central-1.amazonaws.com/nWzD/2E0Z2t6Q8FG3ca620rwqcTY2CC2j2PAGrqqeDROY.jpg",
-                                                        "alt": "image",
-                                                        "default": true,
-                                                        "sort": 5
-                                                    }
-                                                ],
-
-
-                                            });
-                                            addProduct(raw)
-
+                                            handleAddProduct(product._id, product)
 
                                         }}
                                     >
